@@ -1,1 +1,97 @@
-https://flutlab.io/editor/5a811b30-8bf6-4f71-b081-150839725905
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // Data tentang foto dan nama
+    final List<Map<String, String>> data = [
+      {
+        "Nama": "Rawon",
+        "Harga": "Rp.35.000",
+        "imageUrl":
+            "https://i.pinimg.com/564x/7e/37/e2/7e37e2d829dbf80fc712b20453dcbf0e.jpg"
+      },
+      {
+        "Nama": "Soto",
+        "Harga": "Rp.25.000",
+        "imageUrl":
+            "https://i.pinimg.com/564x/22/a9/9e/22a99e5cff6ef7fd0c703e0b0ae42f66.jpg"
+      },
+      {
+        "Nama": "Bakso",
+        "Harga": "Rp.15.000",
+        "imageUrl":
+            "https://i.pinimg.com/564x/ad/a8/f8/ada8f842263018081d759815a69427c4.jpg"
+      },
+      {
+        "Nama": "Sate",
+        "Harga": "Rp.12.000",
+        "imageUrl":
+            "https://i.pinimg.com/564x/84/a1/bc/84a1bc8a9b809484b8dce8071c9f6ca3.jpg"
+      },
+      {
+        "Nama": "Seblak",
+        "Harga": "Rp.20.000",
+        "imageUrl":
+            "https://i.pinimg.com/236x/47/e0/11/47e011f0b3c07e90e51b9d6e16f332cc.jpg"
+      },
+      // Tambahkan data lain sesuai kebutuhan Anda
+    ];
+    return MaterialApp(
+      title: 'Project Flutter',
+      home: Scaffold(
+          backgroundColor: Colors.blue,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text('Daftar Menu Makanan'),
+            backgroundColor: Color(0xff29099d),
+            leading: IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () {},
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          body: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, index) {
+              final item = data[index];
+              return Padding(
+                padding: const EdgeInsets.only(
+                  top: 20,
+                ),
+                child: ListTile(
+                  leading: ClipOval(
+                    child: Image.network(
+                      item["imageUrl"] ?? "",
+                      width: 50, // Sesuaikan dengan ukuran yang Anda inginkan
+                      height: 50, // Sesuaikan dengan ukuran yang Anda inginkan
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text(
+                    item["Nama"] ?? "",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  subtitle: Text(
+                    item["Harga"] ?? "",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              );
+            },
+          )),
+    );
+  }
+}
+
